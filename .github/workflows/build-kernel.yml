@@ -1,15 +1,16 @@
 name: Build Kernel
+name: Build Kernel
 on:
-  watch:
-    types: [started]
-
   workflow_dispatch:
 
 jobs:
   build:
     name: Build Kernel by ${{ github.actor }}
-    runs-on: ubuntu-latest
-    if: github.event.repository.owner.id == github.event.sender.id
+    runs-on: ubuntu-22.04
+    env:
+      CCACHE_COMPILERCHECK: "%compiler% -dumpmachine; %compiler% -dumpversion"
+      CCACHE_NOHASHDIR: "true"
+      CCACHE_HARDLINK: "true"
     steps:
     - uses: actions/checkout@v4
     - name: Setup Configuration
