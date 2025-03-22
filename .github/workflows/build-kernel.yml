@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-22.04
     
     steps:
-    - uses: actions/upload-artifact@v4
+    - uses: actions/checkout@v4
     - name: Setup Configuration
       run: |
         echo "KERNEL_SOURCE=$(cat config.env | grep "KERNEL_SOURCE" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
